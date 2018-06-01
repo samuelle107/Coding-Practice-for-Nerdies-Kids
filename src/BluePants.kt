@@ -3,11 +3,11 @@ import kotlin.system.exitProcess
 
 open class BaseGame(val game_name:String)
 {
-    //Assigns a number from 1-6 to keyGenerator
-    val keyGenerator = Random().nextInt(11-1)+1
+    //Assigns a number from 1-10 to keyGenerator
+    private val keyGenerator = Random().nextInt(11-1)+1
     var gotKey = false
     var currentRoom = 1
-    var searchLimit = 3
+    var searchLimit = 10
 
     var setRoomOne = "Room 1"
     var setRoomTwo = "Room 2"
@@ -19,6 +19,18 @@ open class BaseGame(val game_name:String)
     var setRoomEight = "Room 8"
     var setRoomNine = "Room 9"
     var setRoomTen = "Room 10"
+
+    var checkRoomOne = false
+    var checkRoomTwo = false
+    var checkRoomThree = false
+    var checkRoomFour = false
+    var checkRoomFive = false
+    var checkRoomSix = false
+    var checkRoomSeven = false
+    var checkRoomEight = false
+    var checkRoomNine = false
+    var checkRoomTen = false
+
 
     fun start()
     {
@@ -57,6 +69,7 @@ open class BaseGame(val game_name:String)
     //This function asks the user for the direction.  Only lets the user go either up, down, left, or right
     fun getDirection(): String
     {
+        println("")
         println("What direction do you want to go?  Enter up, down, left, or right")
         var direction = readLine()
         while ((direction != "up")&&(direction != "down")&&(direction != "left")&&(direction != "right"))
@@ -72,6 +85,7 @@ open class BaseGame(val game_name:String)
         val chance = Random().nextInt(101-1)+1
         if(chance > 95)
         {
+            println("")
             println("As you go for the door, you hear footsteps come closer.")
             println("Your vision goes dark.")
             println("Your body becomes numb.")
@@ -79,9 +93,8 @@ open class BaseGame(val game_name:String)
             println("Sorry, you didn't make it....")
             exitProcess(0)
         }
-        println("You proceed to the next room.")
     }
-    private fun search(room_key:Boolean)
+    private fun search(room_key:Boolean):Boolean
     {
         if((searchLimit != 0) && (!gotKey))
         {
@@ -93,19 +106,23 @@ open class BaseGame(val game_name:String)
                 {
                     println("You found your car keys!")
                     gotKey = true
+                    return true
                 }
                 else
                 {
                     println("It isn't here....")
                     println("You hear footsteps come closer.")
                     searchLimit--
+                    return true
                 }
             }
         }
         else if(searchLimit == 0)
         {
             println("You don't have any more time to search.")
+            return false
         }
+        return false
     }
     fun location1()
     {
@@ -116,8 +133,14 @@ open class BaseGame(val game_name:String)
             room_key = true
         }
         println("You are in $setRoomOne")
-        search(room_key)
-        //survive()
+        if(!checkRoomOne)
+        {
+            if(search(room_key))
+            {
+                checkRoomOne = true
+            }
+        }
+        survive()
     }
     fun location2()
     {
@@ -128,7 +151,13 @@ open class BaseGame(val game_name:String)
             room_key = true
         }
         println("You are in $setRoomTwo")
-        search(room_key)
+        if(!checkRoomTwo)
+        {
+            if(search(room_key))
+            {
+                checkRoomTwo = true
+            }
+        }
         survive()
     }
     fun location3()
@@ -140,7 +169,13 @@ open class BaseGame(val game_name:String)
             room_key = true
         }
         println("You are in $setRoomThree")
-        search(room_key)
+        if(!checkRoomThree)
+        {
+            if(search(room_key))
+            {
+                checkRoomThree = true
+            }
+        }
         survive()
     }
     fun location4()
@@ -152,7 +187,13 @@ open class BaseGame(val game_name:String)
             room_key = true
         }
         println("You are in $setRoomFour")
-        search(room_key)
+        if(!checkRoomFour)
+        {
+            if(search(room_key))
+            {
+                checkRoomFour = true
+            }
+        }
         survive()
     }
     fun location5()
@@ -164,7 +205,13 @@ open class BaseGame(val game_name:String)
             room_key = true
         }
         println("You are in $setRoomFive")
-        search(room_key)
+        if(!checkRoomFive)
+        {
+            if(search(room_key))
+            {
+                checkRoomFive = true
+            }
+        }
         survive()
     }
     fun location6()
@@ -176,7 +223,13 @@ open class BaseGame(val game_name:String)
             room_key = true
         }
         println("You are in $setRoomSix")
-        search(room_key)
+        if(!checkRoomSix)
+        {
+            if(search(room_key))
+            {
+                checkRoomSix = true
+            }
+        }
         survive()
     }
     fun location7()
@@ -188,7 +241,13 @@ open class BaseGame(val game_name:String)
             room_key = true
         }
         println("You are in $setRoomSeven")
-        search(room_key)
+        if(!checkRoomSeven)
+        {
+            if(search(room_key))
+            {
+                checkRoomSeven = true
+            }
+        }
         survive()
     }
     fun location8()
@@ -200,7 +259,13 @@ open class BaseGame(val game_name:String)
             room_key = true
         }
         println("You are in $setRoomEight")
-        search(room_key)
+        if(!checkRoomEight)
+        {
+            if(search(room_key))
+            {
+                checkRoomEight = true
+            }
+        }
         survive()
     }
     fun location9()
@@ -212,7 +277,13 @@ open class BaseGame(val game_name:String)
             room_key = true
         }
         println("You are in $setRoomNine")
-        search(room_key)
+        if(!checkRoomNine)
+        {
+            if(search(room_key))
+            {
+                checkRoomNine = true
+            }
+        }
         survive()
     }
     fun location10()
@@ -224,7 +295,13 @@ open class BaseGame(val game_name:String)
             room_key = true
         }
         println("You are in $setRoomTen")
-        search(room_key)
+        if(!checkRoomTen)
+        {
+            if(search(room_key))
+            {
+                checkRoomTen = true
+            }
+        }
         survive()
     }
 }
@@ -253,22 +330,30 @@ class NewGame(game_name:String):BaseGame(game_name)
                 {
                     var direction = getDirection()
                     if(direction == "up")
+                    {
                         location5()
+                    }
                     else if (direction == "down")
                     {
                         println("You cannot go that way, try again.")
                         location1()
                     }
                     else if(direction == "left")
+                    {
                         location2()
+                    }
                     else if (direction == "right")
+                    {
                         location3()
+                    }
                 }
                 2->
                 {
                     var direction = getDirection()
                     if(direction == "up")
+                    {
                         location4()
+                    }
                     else if (direction == "down")
                     {
                         println("You cannot go that way, try again.")
@@ -280,21 +365,26 @@ class NewGame(game_name:String):BaseGame(game_name)
                         location2()
                     }
                     else if (direction == "right")
+                    {
                         location1()
+                    }
                 }
                 3->
                 {
-                    map()
                     var direction = getDirection()
                     if(direction == "up")
+                    {
                         location6()
+                    }
                     else if (direction == "down")
                     {
                         println("You cannot go that way, try again.")
                         location3()
                     }
                     else if(direction == "left")
+                    {
                         location1()
+                    }
                     else if (direction == "right")
                     {
                         println("You cannot go that way, try again.")
@@ -308,50 +398,148 @@ class NewGame(game_name:String):BaseGame(game_name)
                     var direction = getDirection()
                     if(direction == "up")
                     {
-                        println("You cannot go that way, try again.")
-                        location4()
+                        location9()
                     }
                     else if (direction == "down")
+                    {
                         location2()
+                    }
                     else if(direction == "left")
                     {
                         println("You cannot go that way, try again.")
                         location4()
                     }
                     else if (direction == "right")
+                    {
                         location5()
+                    }
                 }
                 5->
                 {
                     var direction = getDirection()
                     if(direction == "up")
                     {
-                        println("You cannot go that way, try again.")
-                        location5()
+                        location8()
                     }
                     else if (direction == "down")
+                    {
                         location1()
+                    }
                     else if(direction == "left")
+                    {
                         location4()
+                    }
                     else if (direction == "right")
+                    {
                         location6()
+                    }
                 }
                 6->
                 {
                     var direction = getDirection()
                     if(direction == "up")
                     {
-                        println("You cannot go that way, try again.")
-                        location6()
+                        location7()
                     }
                     else if (direction == "down")
+                    {
                         location3()
+                    }
                     else if(direction == "left")
+                    {
                         location5()
+                    }
                     else if (direction == "right")
                     {
                         scoreboard()
                         end()
+                    }
+                }
+                7->
+                {
+                    var direction = getDirection()
+                    if(direction == "up")
+                    {
+                        println("You cannot go that way, try again.")
+                        location7()
+                    }
+                    else if (direction == "down")
+                    {
+                        location6()
+                    }
+                    else if(direction == "left")
+                    {
+                        location8()
+                    }
+                    else if (direction == "right")
+                    {
+                        println("You cannot go that way, try again.")
+                        location7()
+                    }
+                }
+                8->
+                {
+                    var direction = getDirection()
+                    if(direction == "up")
+                    {
+                        location10()
+                    }
+                    else if (direction == "down")
+                    {
+                        location5()
+                    }
+                    else if(direction == "left")
+                    {
+                        location9()
+                    }
+                    else if (direction == "right")
+                    {
+                        location7()
+                    }
+                }
+                9->
+                {
+                    var direction = getDirection()
+                    if(direction == "up")
+                    {
+                        println("You cannot go that way, try again.")
+                        location9()
+                    }
+                    else if (direction == "down")
+                    {
+                        location4()
+                    }
+                    else if(direction == "left")
+                    {
+                        println("You cannot go that way, try again.")
+                        location9()
+                    }
+                    else if (direction == "right")
+                    {
+                        location8()
+                    }
+                }
+                10->
+                {
+                    var direction = getDirection()
+                    if(direction == "up")
+                    {
+                        scoreboard()
+                        end()
+                    }
+                    else if (direction == "down")
+                    {
+                        location8()
+                    }
+                    else if(direction == "left")
+                    {
+                        println("You cannot go that way, try again.")
+                        location10()
+                    }
+                    else if (direction == "right")
+                    {
+                        println("You cannot go that way, try again.")
+                        location10()
                     }
                 }
                 else->
@@ -368,4 +556,6 @@ fun main(args: Array<String>)
     var test = NewGame("Fallout 4")
     test.start()
     test.map()
+
+
 }
