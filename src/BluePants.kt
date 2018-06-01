@@ -162,4 +162,5 @@ fun main(args: Array<String>)
     test.location6("6")
     test.end()
     println("testing, please work")
+    println("Hiya")
 }
