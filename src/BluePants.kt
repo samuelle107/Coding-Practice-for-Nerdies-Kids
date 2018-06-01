@@ -96,6 +96,7 @@ open class BaseGame(val game_name:String)
             println("Your vision goes dark.")
             println("Your body becomes numb.")
             println("You hear a sinister laugh.")
+            println("The $setMonster got you.")
             println("Sorry, you didn't make it....")
             exitProcess(0)
         }
