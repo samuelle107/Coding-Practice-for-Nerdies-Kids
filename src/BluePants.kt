@@ -3,12 +3,17 @@ import kotlin.system.exitProcess
 
 open class BaseGame(val game_name:String)
 {
-    //Assigns a number from 1-10 to keyGenerator
+    //Randomly picks one room to have the keys
     private val keyGenerator = Random().nextInt(11-1)+1
+    //Boolean variable to check if you have the key
     var gotKey = false
+    //Keeps track of what room you are in
     var currentRoom = 1
-    var searchLimit = 10
-
+    //Amount of times you are able to search
+    private var searchLimit = 5
+    //Monster name
+    var setMonster = "poltergeist"
+    //Room Names
     var setRoomOne = "Room 1"
     var setRoomTwo = "Room 2"
     var setRoomThree = "Room 3"
@@ -19,7 +24,7 @@ open class BaseGame(val game_name:String)
     var setRoomEight = "Room 8"
     var setRoomNine = "Room 9"
     var setRoomTen = "Room 10"
-
+    //Booleans to check if you have searched the room yet
     var checkRoomOne = false
     var checkRoomTwo = false
     var checkRoomThree = false
@@ -30,8 +35,7 @@ open class BaseGame(val game_name:String)
     var checkRoomEight = false
     var checkRoomNine = false
     var checkRoomTen = false
-
-
+    //Function to start the game message
     fun start()
     {
         println("Thank you for playing $game_name")
@@ -46,6 +50,7 @@ open class BaseGame(val game_name:String)
         println("")
         location1()
     }
+    //Function to end the game.  Pick a location in the map and place end function there
     fun end()
     {
         if(!gotKey)
@@ -53,7 +58,7 @@ open class BaseGame(val game_name:String)
             println("")
             println("Ah man, you made it, but you didn't get your car keys.")
             println("Hey, did you hear that?")
-            println("A poltergeist comes out the walls and pulls you into the dark....")
+            println("A $setMonster comes out the walls and pulls you into the dark....")
             println("GAME OVER")
             exitProcess(0)
         }
@@ -80,10 +85,11 @@ open class BaseGame(val game_name:String)
         }
         return direction
     }
+    //RNG death lol
     private fun survive()
     {
         val chance = Random().nextInt(101-1)+1
-        if(chance > 95)
+        if(chance >= 95)
         {
             println("")
             println("As you go for the door, you hear footsteps come closer.")
@@ -94,12 +100,14 @@ open class BaseGame(val game_name:String)
             exitProcess(0)
         }
     }
+    //Asks the user if they want to search or not
     private fun search(room_key:Boolean):Boolean
     {
         if((searchLimit != 0) && (!gotKey))
         {
+            println("")
             println("Do you want to search?  Enter yes or no")
-            var input = readLine()
+            val input = readLine()
             if(input == "yes")
             {
                 if(room_key)
@@ -305,7 +313,6 @@ open class BaseGame(val game_name:String)
         survive()
     }
 }
-
 //Just in case, this is the way you inherit, or extend from a function.
 class NewGame(game_name:String):BaseGame(game_name)
 {
@@ -556,6 +563,4 @@ fun main(args: Array<String>)
     var test = NewGame("Fallout 4")
     test.start()
     test.map()
-
-
 }
